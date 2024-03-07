@@ -22,10 +22,57 @@
 
 
 
-from collections import defaultdict, deque
+# from collections import defaultdict, deque
+
+# class Graph:
+#     def __init__(self):
+#         self.graph = defaultdict(list)
+
+#     def add_edge(self, u, v):
+#         self.graph[u].append(v)
+
+#     def bfs(self, start):
+#         visited = set()
+#         queue = deque([start])
+#         visited.add(start)
+
+#         while queue:
+#             vertex = queue.popleft()
+#             print(vertex, end=" ")
+
+#             for neighbour in self.graph[vertex]:
+#                 if neighbour not in visited:
+#                     queue.append(neighbour)
+#                     visited.add(neighbour)
+
+# # Example usage:
+# g = Graph()
+# g.add_edge(1, 2)
+# g.add_edge(1, 3)
+# g.add_edge(1, 4)
+# g.add_edge(2, 5)
+# g.add_edge(2, 6)
+# g.add_edge(4, 7)
+# g.add_edge(4, 8)
+# g.add_edge(5, 9)
+# g.add_edge(5, 10)
+# g.add_edge(7, 11)
+# g.add_edge(7, 12)
+
+# print("BFS Traversal starting from vertex 2:")
+# g.bfs(1)
+
+
+
+
+
+
+
+
+from collections import defaultdict
 
 class Graph:
-    def __init__(self):
+    def _init_(self):
         self.graph = defaultdict(list)
 
     def add_edge(self, u, v):
@@ -33,31 +80,32 @@ class Graph:
 
     def bfs(self, start):
         visited = set()
-        queue = deque([start])
-        visited.add(start)
+        queue = [start]
 
         while queue:
-            vertex = queue.popleft()
-            print(vertex, end=" ")
+            vertex = queue.pop(0)
+            if vertex not in visited:
+                print(vertex, end=" ")
+                visited.add(vertex)
+                queue.extend(self.graph[vertex])
 
-            for neighbour in self.graph[vertex]:
-                if neighbour not in visited:
-                    queue.append(neighbour)
-                    visited.add(neighbour)
+# Define the graph G
+G = {
+    'A': ['B', 'E', 'C'],
+    'B': ['A', 'E', 'D'],
+    'C': ['A', 'F', 'G'],
+    'D': ['B', 'E'],
+    'E': ['A', 'B', 'D'],
+    'F': ['C'],
+    'G': ['C']
+}
 
-# Example usage:
+# Create a Graph object and add edges from G
 g = Graph()
-g.add_edge(1, 2)
-g.add_edge(1, 3)
-g.add_edge(1, 4)
-g.add_edge(2, 5)
-g.add_edge(2, 6)
-g.add_edge(4, 7)
-g.add_edge(4, 8)
-g.add_edge(5, 9)
-g.add_edge(5, 10)
-g.add_edge(7, 11)
-g.add_edge(7, 12)
+for vertex, neighbors in G.items():
+    for neighbor in neighbors:
+        g.add_edge(vertex, neighbor)
 
-print("BFS Traversal starting from vertex 2:")
-g.bfs(1)
+# Perform BFS traversal starting from vertex 'C'
+print("BFS Traversal starting from vertex 'C':")
+g.bfs('C')

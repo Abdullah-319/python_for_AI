@@ -69,43 +69,92 @@
 
 
 
-from collections import defaultdict
+# from collections import defaultdict
 
-class Graph:
-    def _init_(self):
-        self.graph = defaultdict(list)
+# class Graph:
+#     def __init__(self):
+#         self.graph = defaultdict(list)
 
-    def add_edge(self, u, v):
-        self.graph[u].append(v)
+#     def add_edge(self, u, v):
+#         self.graph[u].append(v)
 
-    def bfs(self, start):
-        visited = set()
-        queue = [start]
+#     def bfs(self, start):
+#         visited = set()
+#         queue = [start]
 
-        while queue:
-            vertex = queue.pop(0)
-            if vertex not in visited:
-                print(vertex, end=" ")
-                visited.add(vertex)
-                queue.extend(self.graph[vertex])
+#         while queue:
+#             vertex = queue.pop(0)
+#             if vertex not in visited:
+#                 print(vertex, end=" ")
+#                 visited.add(vertex)
+#                 queue.extend(self.graph[vertex])
 
-# Define the graph G
-G = {
-    'A': ['B', 'E', 'C'],
-    'B': ['A', 'E', 'D'],
-    'C': ['A', 'F', 'G'],
-    'D': ['B', 'E'],
-    'E': ['A', 'B', 'D'],
-    'F': ['C'],
-    'G': ['C']
-}
+# # Define the graph G
+# G = {
+#     'A': ['B', 'E', 'C'],
+#     'B': ['A', 'E', 'D'],
+#     'C': ['A', 'F', 'G'],
+#     'D': ['B', 'E'],
+#     'E': ['A', 'B', 'D'],
+#     'F': ['C'],
+#     'G': ['C']
+# }
 
-# Create a Graph object and add edges from G
-g = Graph()
-for vertex, neighbors in G.items():
-    for neighbor in neighbors:
-        g.add_edge(vertex, neighbor)
+# # Create a Graph object and add edges from G
+# g = Graph()
+# for vertex, neighbors in G.items():
+#     for neighbor in neighbors:
+#         g.add_edge(vertex, neighbor)
 
-# Perform BFS traversal starting from vertex 'C'
-print("BFS Traversal starting from vertex 'C':")
-g.bfs('C')
+# # Perform BFS traversal starting from vertex 'C'
+# print("BFS Traversal starting from vertex 'C':")
+# g.bfs('C')
+
+
+
+
+
+
+
+
+
+# from collections import defaultdict
+
+# class Graph:
+#     def __init__(self):
+#         self.graph = defaultdict(list)
+
+#     def add_edge(self, u, v):
+#         self.graph[u].append(v)
+
+#     def dfs(self, start):
+#         visited = set()
+#         stack = [start]
+
+#         while stack:
+#             vertex = stack.pop()
+#             if vertex not in visited:
+#                 print(vertex, end=" ")
+#                 visited.add(vertex)
+#                 stack.extend(reversed(self.graph[vertex]))
+
+# # Define the graph G
+# G = {
+#     'A': ['B', 'E', 'C'],
+#     'B': ['A', 'E', 'D'],
+#     'C': ['A', 'F', 'G'],
+#     'D': ['B', 'E'],
+#     'E': ['A', 'B', 'D'],
+#     'F': ['C'],
+#     'G': ['C']
+# }
+
+# # Create a Graph object and add edges from G
+# g = Graph()
+# for vertex, neighbors in G.items():
+#     for neighbor in neighbors:
+#         g.add_edge(vertex, neighbor)
+
+# # Perform DFS traversal starting from vertex 'C'
+# print("DFS Traversal starting from vertex 'C':")
+# g.dfs('C')

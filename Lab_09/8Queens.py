@@ -4,18 +4,18 @@ import math
 
 class queensGA:
 
-    def updateIndividalFitness(self, individualArray):
+    def updateIndividalFitness(self, singleArray):
         i = 0
         fitnessValue = 0
         while i < self.individualSize:
             j = 0
             while j < self.individualSize:
                 if i != j:
-                    if individualArray[j] == individualArray[i]:
+                    if singleArray[j] == singleArray[i]:
                         fitnessValue = fitnessValue + 1
-                    elif individualArray[j] == individualArray[i] - abs(j - i):
+                    elif singleArray[j] == singleArray[i] - abs(j - i):
                         fitnessValue = fitnessValue + 1
-                    elif individualArray[j] == individualArray[i] + abs(j - i):
+                    elif singleArray[j] == singleArray[i] + abs(j - i):
                         fitnessValue = fitnessValue + 1
                 j = j + 1
             i = i + 1

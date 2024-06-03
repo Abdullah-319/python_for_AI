@@ -1,0 +1,34 @@
+1. Write a Cypher query to list the names of all movies directed by "Christopher Nolan".
+	
+	MATCH (p:Person {name: 'Christopher Nolan'})-[:DIRECTED]->(m:Movie)
+	RETURN m.title AS movie_title
+
+
+2. Find the titles of movies released after the year 1998 and the names of their Producers..
+	
+	MATCH (m:Movie)-[:PRODUCED]-(p:Person)
+	WHERE m.released > 1998
+	RETURN m.title AS movie_title, m.released AS release_year, p.name AS producer_name;
+
+
+3. List all actors who have acted in at least 4 different movies..
+
+	MATCH (actor:Person)-[:ACTED_IN]->(movie:Movie)
+	WITH actor, count(DISTINCT movie) AS movie_count
+	WHERE movie_count > 3
+	RETURN actor.name AS actor_name;
+	
+
+4. For movies in which "Tom Hanks" has acted, print the titles of these movies, the names of the
+producers, and all actors who acted in these movies.
+	
+	MATCH (p:Person {name: 'Tom Hanks'})-[:ACTED_IN]->(movie:Movie)<-[:PRODUCED]-(producer),
+	(movie)<-[:ACTED_IN]-(actor)
+	RETURN movie.title AS movie_title, producer.name AS producer_name, actor.name AS actor_name;
+
+	
+
+5. Write a Cypher query to delete all nodes and relationships associated with the label "Movie".
+
+	MATCH (m:Movie)
+	DETACH DELETE m;
